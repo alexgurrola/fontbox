@@ -1,27 +1,32 @@
 package net.afterlifelochie.demo;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDemoBook extends Item {
 
 	public ItemDemoBook() {
 		super();
-		setTextureName("book_normal");
-		setCreativeTab(CreativeTabs.tabMisc);
+		setRegistryName("demo-book");
+		setCreativeTab(CreativeTabs.MISC);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-		if (par2World.isRemote)
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+	{
+		if (world.isRemote)
 			Minecraft.getMinecraft().displayGuiScreen(new GuiDemoBook());
-		return par1ItemStack;
+		return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
+
 }

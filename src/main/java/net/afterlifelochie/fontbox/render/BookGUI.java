@@ -1,5 +1,6 @@
 package net.afterlifelochie.fontbox.render;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import net.afterlifelochie.fontbox.Fontbox;
@@ -11,6 +12,7 @@ import net.afterlifelochie.fontbox.layout.PageIndex;
 import net.afterlifelochie.fontbox.layout.components.Page;
 import net.minecraft.client.gui.GuiScreen;
 
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.OpenGLException;
@@ -349,7 +351,7 @@ public abstract class BookGUI extends GuiScreen {
 	}
 
 	@Override
-	protected void keyTyped(char val, int code) {
+	protected void keyTyped(char val, int code) throws IOException {
 		super.keyTyped(val, code);
 		if (code == Keyboard.KEY_LEFT)
 			previous();
@@ -358,7 +360,7 @@ public abstract class BookGUI extends GuiScreen {
 	}
 
 	@Override
-	protected void mouseClicked(int mx, int my, int button) {
+	protected void mouseClicked(int mx, int my, int button) throws IOException {
 		super.mouseClicked(mx, my, button);
 		for (int i = 0; i < mode.pages; i++) {
 			Layout where = layout[i];
@@ -376,8 +378,8 @@ public abstract class BookGUI extends GuiScreen {
 	}
 
 	@Override
-	protected void mouseMovedOrUp(int mx, int my, int button) {
-		super.mouseMovedOrUp(mx, my, button);
+	protected void mouseReleased(int mx, int my, int button) {
+		super.mouseReleased(mx, my, button);
 	}
 
 	@Override
