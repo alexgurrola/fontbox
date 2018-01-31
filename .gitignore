@@ -217,6 +217,7 @@ pip-log.txt
 # Gradle
 /.gradle
 /build/
+/classes/
 /run/
 /eclipse/
 /runtime/
@@ -231,3 +232,4 @@ pip-log.txt
 *.ipr
 *.iws
 out/
+.idea/

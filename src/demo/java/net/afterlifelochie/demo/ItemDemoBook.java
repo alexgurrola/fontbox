@@ -22,11 +22,12 @@ public class ItemDemoBook extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if (world.isRemote)
+		if (worldIn.isRemote) {
 			Minecraft.getMinecraft().displayGuiScreen(new GuiDemoBook());
-		return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+		}
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 
 }
